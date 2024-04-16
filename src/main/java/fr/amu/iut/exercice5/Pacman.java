@@ -7,6 +7,8 @@ public class Pacman extends Personnage {
 
     private Line bouche;
 
+    private Obstacles rectangle = new Obstacles(300, 50, 320, 100);
+
 
     public Pacman() {
         super("droite", Color.BLACK, Color.YELLOW);
@@ -34,12 +36,18 @@ public class Pacman extends Personnage {
 
     @Override
     public void deplacerEnBas(double hauteurJeu) {
-        // à compléter
+        super.deplacerEnBas(hauteurJeu);
+        //sens de la bouche
+        bouche.setEndX(bouche.getStartX());
+        bouche.setEndY(bouche.getStartY() + LARGEUR_MOITIE_PERSONNAGE - .5);
     }
 
     @Override
     public void deplacerEnHaut() {
-        // à compléter
+        super.deplacerEnHaut();
+        //sens de la bouche
+        bouche.setEndX(bouche.getStartX());
+        bouche.setEndY(bouche.getStartY() - LARGEUR_MOITIE_PERSONNAGE - .5);
     }
 
 }

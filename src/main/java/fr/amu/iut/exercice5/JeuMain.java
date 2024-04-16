@@ -12,6 +12,9 @@ public class JeuMain extends Application {
     private Scene scene;
     private BorderPane root;
 
+    //Créer obstacles
+    Obstacles rectangle = new Obstacles(300, 50, 320, 100);
+
     @Override
     public void start(Stage primaryStage) {
 
@@ -31,8 +34,11 @@ public class JeuMain extends Application {
         //on construit une scene 640 * 480 pixels
         scene = new Scene(root);
 
+
+        root.getChildren().add(rectangle);
+
         //Gestion du déplacement du personnage
-        deplacer(pacman, fantome);
+        deplacer(pacman, fantome, rectangle);
 
         primaryStage.setTitle("... Pac Man ...");
 
@@ -47,7 +53,7 @@ public class JeuMain extends Application {
      * @param j1
      * @param j2
      */
-    private void deplacer(Personnage j1, Personnage j2) {
+    private void deplacer(Personnage j1, Personnage j2, Obstacles obstacles) {
         scene.setOnKeyPressed((KeyEvent event) -> {
             switch (event.getCode()) {
                 case LEFT:
@@ -56,13 +62,34 @@ public class JeuMain extends Application {
                 case RIGHT:
                     j1.deplacerADroite(scene.getWidth());
                     break;
-                case Z:
-                    //j2...... vers le haut;
+                case UP:
+                    j1.deplacerEnHaut();
                     break;
-
+                case DOWN:
+                    j1.deplacerEnBas(scene.getHeight());
+                    break;
+                case Z :
+                    j2.deplacerEnHaut();
+                    break;
+                case S:
+                    j2.deplacerEnBas(scene.getHeight());
+                    break;
+                case Q:
+                    j2.deplacerAGauche();
+                    break;
+                case D:
+                    j2.deplacerADroite(scene.getWidth());
+                    break;
             }
-            if (j1.estEnCollision(j2))
+            if (j1.estEnCollision(j2)) {
                 System.out.println("Collision....");
+                System.exit(0);
+            }
+            if (j1.estEnCollisionAvecMur(rectangle)){
+                System.out.println("OBSTACLE");
+            }
+            if (j2.estEnCollisionAvecMur(rectangle))
+                System.out.println("OBSTACLE");
         });
     }
 

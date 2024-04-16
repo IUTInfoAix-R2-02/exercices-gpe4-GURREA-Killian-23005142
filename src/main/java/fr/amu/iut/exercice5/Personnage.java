@@ -10,6 +10,9 @@ class Personnage extends Group {
     private final Circle corps;
     private String direction;
 
+    private Obstacles rectangle = new Obstacles(300, 50, 320, 100);
+
+
     public Personnage(String direction, Color couleurContour, Color couleurRemplissage) {
         this.direction = direction;
         corps = new Circle(10, 10, LARGEUR_MOITIE_PERSONNAGE, couleurContour);
@@ -25,7 +28,7 @@ class Personnage extends Group {
         //    ****
 
         //déplacement <----
-        if (getLayoutX() >= LARGEUR_PERSONNAGE) {
+        if (getLayoutX() >= LARGEUR_PERSONNAGE && estEnCollisionAvecMur(rectangle) == false) {
             setLayoutX(getLayoutX() - LARGEUR_PERSONNAGE);
         }
         if (!direction.equals("gauche")) {
@@ -40,7 +43,7 @@ class Personnage extends Group {
         //   *    *
         //    ****
         //déplacement ---->
-        if (getLayoutX() < largeurJeu - LARGEUR_PERSONNAGE) {
+        if (getLayoutX() < largeurJeu -1 - LARGEUR_PERSONNAGE && estEnCollisionAvecMur(rectangle) == false) {
             setLayoutX(getLayoutX() + LARGEUR_PERSONNAGE);
         }
         if (!direction.equals("droite")) {
@@ -54,7 +57,12 @@ class Personnage extends Group {
         //  *   |   *
         //   *  |  *
         //    *****
-
+        if (getLayoutY() < hauteurJeu -1 - LARGEUR_PERSONNAGE && estEnCollisionAvecMur(rectangle) == false){
+            setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE);
+        }
+        if (!direction.equals("bas")){
+            direction = "bas";
+        }
     }
 
     public void deplacerEnHaut() {
@@ -63,12 +71,22 @@ class Personnage extends Group {
         //  *   |   *
         //   *     *
         //    *****
+        if (getLayoutY() >= LARGEUR_PERSONNAGE && estEnCollisionAvecMur(rectangle) == false){
+            setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE);
+        }
+        if (!direction.equals("haut"))
+            direction = "haut";
 
     }
 
     boolean estEnCollision(Personnage autrePersonnage) {
         return getBoundsInParent().contains(autrePersonnage.getBoundsInParent())
                 || autrePersonnage.getBoundsInParent().contains(getBoundsInParent());
+    }
+
+    boolean estEnCollisionAvecMur(Obstacles rectangle) {
+        return getLayoutBounds().contains(rectangle.getLayoutBounds())
+                || rectangle.getLayoutBounds().contains(getLayoutBounds());
     }
 
 }
