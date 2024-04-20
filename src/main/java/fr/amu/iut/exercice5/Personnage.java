@@ -28,7 +28,7 @@ class Personnage extends Group {
         //    ****
 
         //déplacement <----
-        if (getLayoutX() >= LARGEUR_PERSONNAGE && estEnCollisionAvecMur(rectangle) == false) {
+        if (getLayoutX() >= LARGEUR_PERSONNAGE && !estEnCollisionAvecMur(rectangle)) {
             setLayoutX(getLayoutX() - LARGEUR_PERSONNAGE);
         }
         if (!direction.equals("gauche")) {
@@ -43,7 +43,7 @@ class Personnage extends Group {
         //   *    *
         //    ****
         //déplacement ---->
-        if (getLayoutX() < largeurJeu -1 - LARGEUR_PERSONNAGE && estEnCollisionAvecMur(rectangle) == false) {
+        if (getLayoutX() < largeurJeu -1 - LARGEUR_PERSONNAGE && !estEnCollisionAvecMur(rectangle)) {
             setLayoutX(getLayoutX() + LARGEUR_PERSONNAGE);
         }
         if (!direction.equals("droite")) {
@@ -57,7 +57,7 @@ class Personnage extends Group {
         //  *   |   *
         //   *  |  *
         //    *****
-        if (getLayoutY() < hauteurJeu -1 - LARGEUR_PERSONNAGE && estEnCollisionAvecMur(rectangle) == false){
+        if (getLayoutY() < hauteurJeu -1 - LARGEUR_PERSONNAGE && !estEnCollisionAvecMur(rectangle)){
             setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE);
         }
         if (!direction.equals("bas")){
@@ -71,7 +71,7 @@ class Personnage extends Group {
         //  *   |   *
         //   *     *
         //    *****
-        if (getLayoutY() >= LARGEUR_PERSONNAGE && estEnCollisionAvecMur(rectangle) == false){
+        if (getLayoutY() >= LARGEUR_PERSONNAGE && !estEnCollisionAvecMur(rectangle)){
             setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE);
         }
         if (!direction.equals("haut"))
@@ -85,8 +85,10 @@ class Personnage extends Group {
     }
 
     boolean estEnCollisionAvecMur(Obstacles rectangle) {
-        return getLayoutBounds().contains(rectangle.getLayoutBounds())
-                || rectangle.getLayoutBounds().contains(getLayoutBounds());
+        setLayoutX(getLayoutX());
+        setLayoutY(getLayoutY());
+        return getBoundsInParent().contains(rectangle.getBoundsInParent())
+                || rectangle.getBoundsInParent().contains(getBoundsInParent());
     }
 
 }
