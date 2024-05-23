@@ -1,15 +1,18 @@
-package fr.amu.iut.exercice1;
+package fr.amu.iut.exercice11;
 
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -33,6 +36,26 @@ public class Palette extends Application {
 
     private Label texteDuBas;
 
+    private void clickBleu(Event event){
+        texteDuHaut.setText("Bleu choisie " + ++nbBleu + " fois");
+        panneau.setStyle("-fx-background-color: #00f");
+        texteDuBas.setText("La couleur bleu est jolie !");
+        texteDuBas.setTextFill(Color.BLUE);
+    }
+
+    private void clickRouge(Event event){
+        texteDuHaut.setText("Rouge choisie " + ++nbRouge + " fois");
+        panneau.setStyle("-fx-background-color: #ff0000");
+        texteDuBas.setText("La couleur rouge est jolie !");
+        texteDuBas.setTextFill(Color.RED);
+    }
+
+    private void clickVert(Event event){
+        texteDuHaut.setText("Vert choisie " + ++nbVert + " fois");
+        panneau.setStyle("-fx-background-color: #1db11e");
+        texteDuBas.setText("La couleur vert est jolie !");
+        texteDuBas.setTextFill(Color.GREEN);
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -58,6 +81,9 @@ public class Palette extends Application {
         bleu = new Button("Bleu");
 
         /* VOTRE CODE ICI */
+        this.bleu.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, actionEvent -> clickBleu(actionEvent));
+        this.vert.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, actionEvent -> clickVert(actionEvent));
+        this.rouge.addEventHandler(MouseEvent.MOUSE_CLICKED, actionEvent -> clickRouge(actionEvent));
 
         boutons.getChildren().addAll(vert, rouge, bleu);
 
@@ -69,6 +95,9 @@ public class Palette extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+    public static void main(String[] args){
+        launch(args);
     }
 }
 
