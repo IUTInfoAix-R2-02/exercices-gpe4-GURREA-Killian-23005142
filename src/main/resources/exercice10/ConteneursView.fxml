@@ -1,2 +1,75 @@
-<?import javafx.scene.layout.BorderPane?>
-<BorderPane></BorderPane>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <bottom>
+        <VBox alignment="CENTER" prefHeight="23.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <Separator prefWidth="200.0" />
+            <Label alignment="CENTER" text="Ceci est un label de base de page" />
+        </VBox>
+    </bottom>
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <Menu mnemonicParsing="false" text="File">
+                <MenuItem mnemonicParsing="false" text="New" />
+                <MenuItem mnemonicParsing="false" text="Open" />
+                <MenuItem mnemonicParsing="false" text="Save" />
+                <MenuItem mnemonicParsing="false" text="Exit" />
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+                <MenuItem mnemonicParsing="false" text="Cut" />
+                <MenuItem mnemonicParsing="false" text="Copy" />
+                <MenuItem mnemonicParsing="false" text="Paste" />
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+            </Menu>
+        </MenuBar>
+    </top>
+    <left>
+        <HBox prefHeight="352.0" prefWidth="102.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="346.0" prefWidth="72.0" spacing="10.0">
+                <Label text="Boutons :" />
+                <Button mnemonicParsing="false" text="Button 1" />
+                <Button mnemonicParsing="false" text="Button 2" />
+                <Button mnemonicParsing="false" text="Button 3" />
+                <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                    <buttons>
+                        <RadioButton maxHeight="-Infinity" maxWidth="75.0" minHeight="0.0" minWidth="50.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="25.0" text="On" />
+                        <RadioButton maxHeight="-Infinity" maxWidth="-Infinity" minWidth="25.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="41.0" text="Off" />
+                    </buttons>
+                </ButtonBar>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="352.0" prefWidth="0.0" />
+        </HBox>
+    </left>
+    <center>
+        <GridPane alignment="CENTER" hgap="10.0" minWidth="-Infinity" prefHeight="352.0" prefWidth="433.0" vgap="10.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <Label text="Name:" />
+            <Label text="Email:" GridPane.rowIndex="1" />
+            <Label text="Password:" GridPane.rowIndex="2" />
+            <TextField GridPane.columnIndex="1" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                <Button lineSpacing="10.0" mnemonicParsing="false" text="Submit" />
+                <Button lineSpacing="10.0" mnemonicParsing="false" text="Cancel" />
+            </HBox>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </GridPane>
+    </center>
+</BorderPane>
