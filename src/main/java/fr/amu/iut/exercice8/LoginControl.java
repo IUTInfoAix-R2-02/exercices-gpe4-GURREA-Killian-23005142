@@ -2,37 +2,31 @@ package fr.amu.iut.exercice8;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-import java.awt.*;
-
 public class LoginControl extends GridPane {
+
     @FXML
-    private Button ok;
-    @FXML
-    private Button cancel;
-    @FXML
-    private TextField user;
+    private TextField userId;
+
     @FXML
     private PasswordField pwd;
-    @FXML
-    private Label err;
+
+
     @FXML
     private void okClicked() {
-        String usr = user.getText();
-        String pass = pwd.getText();
+        System.out.print(userId.getText() + " ");
+        for (char c: pwd.getText().toCharArray()){
+            System.out.print("*");
+        }
+        System.out.println();
 
-        if (usr.isEmpty() || pass.isEmpty()) {
-            err.setText("User or Password is empty");
-        }
-        else{
-            System.out.println(usr);
-            err.setText("User or Password is false");
-        }
     }
+
     @FXML
     private void cancelClicked() {
-        //user.clear();
-        pwd.clear();
+        userId.setText("");
+        pwd.setText("");
     }
 }
